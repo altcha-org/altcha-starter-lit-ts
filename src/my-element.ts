@@ -6,6 +6,11 @@ import viteLogo from '/vite.svg'
 // Importing altcha package will introduce a new element <altcha-widget>
 import 'altcha'
 
+// Inject altcha css into the shadow dom via `static styles = [altchaStyles]`
+const altchaStyles = new CSSStyleSheet();
+const altchaStylesUrl = new URL('altcha/altcha.css?raw', import.meta.url).href;
+await altchaStyles.replace(await (await fetch(altchaStylesUrl)).text());
+
 /**
  * An example element.
  *
@@ -58,7 +63,9 @@ export class MyElement extends LitElement {
     `
   }
 
-  static styles = css`
+  static styles = [
+    altchaStyles,
+    css`
     :host {
       max-width: 1280px;
       margin: 0 auto;
@@ -152,7 +159,7 @@ export class MyElement extends LitElement {
         background-color: #f9f9f9;
       }
     }
-  `
+  `]
 }
 
 declare global {

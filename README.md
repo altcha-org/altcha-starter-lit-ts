@@ -58,7 +58,15 @@ npm install altcha --save
 import 'altcha';
 ```
 
-5. Use the `<altcha-widget>` element in your component:
+5. Inject the CSS styles into the element's shadow DOM by adding them to `static styles = []`:
+
+```javascript
+const altchaStyles = new CSSStyleSheet();
+const altchaStylesUrl = new URL('altcha/altcha.css?raw', import.meta.url).href;
+await altchaStyles.replace(await (await fetch(altchaStylesUrl)).text());
+```
+
+6. Use the `<altcha-widget>` element in your component:
 
 ```javascript
 // src/components/ExampleComponent.js
@@ -67,9 +75,13 @@ import { customElement } from 'lit/decorators.js';
 
 @customElement('example-component')
 class ExampleComponent extends LitElement {
-  static styles = css`
-    /* Add your component styles here */
-  `;
+  static styles = [
+    // Inject CSS
+    altchaStyles,
+    css`
+      /* Add your component styles here */
+    `
+  ];
 
   render() {
     return html`
@@ -88,4 +100,4 @@ Ensure your `challengeurl` points to the endpoint where ALTCHA's proof-of-work c
 
 ## Conclusion
 
-With these steps, you should have a Lit project running with the ALTCHA widget integrated. This setup helps protect your application from spam and unwanted content efficiently and compliantly. For more details, visit the [ALTCHA documentation](https://altcha.org/docs).
+With these steps, you should have a Lit project running with the ALTCHA widget integrated. This setup helps protect your application from spam and unwanted content efficiently and compliantly. For more details, visit the [ALTCHA documentation](https://altcha.org/docs/v2).
