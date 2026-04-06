@@ -87,7 +87,7 @@ class ExampleComponent extends LitElement {
     return html`
       <div>
         <h1>My Lit App with ALTCHA</h1>
-        <altcha-widget challengeurl="https://your-challenge-url.com"></altcha-widget>
+        <altcha-widget challenge="https://your-challenge-url.com"></altcha-widget>
       </div>
     `;
   }
@@ -96,7 +96,7 @@ class ExampleComponent extends LitElement {
 
 ## Additional Configuration
 
-Ensure your `challengeurl` points to the endpoint where ALTCHA's proof-of-work challenge is processed. Customize the component attributes as needed based on your specific use case.
+Ensure your `challenge` points to the endpoint where ALTCHA's proof-of-work challenge is processed. Customize the component attributes as needed based on your specific use case.
 
 ## Conclusion
 

@@ -51,8 +51,10 @@ export class MyElement extends LitElement {
           <fieldset>
             <altcha-widget
               style="--altcha-max-width:100%"
-              debug
-              test
+              configuration="${JSON.stringify({
+                debug: true,
+                test: true,
+              })}"
             ></altcha-widget>
           </fieldset>
 
@@ -128,6 +130,7 @@ export class MyElement extends LitElement {
     }
 
     form {
+      min-width: 320px;
       border: 2px solid #777;
       display: flex;
       gap: 1rem;
