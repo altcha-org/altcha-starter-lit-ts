@@ -1,4 +1,4 @@
-import { LitElement, css, html } from 'lit'
+import { LitElement, css, html, unsafeCSS } from 'lit'
 import { customElement, property } from 'lit/decorators.js'
 import litLogo from './assets/lit.svg'
 import viteLogo from '/vite.svg'
@@ -7,9 +7,9 @@ import viteLogo from '/vite.svg'
 import 'altcha'
 
 // Inject altcha css into the shadow dom via `static styles = [altchaStyles]`
-const altchaStyles = new CSSStyleSheet();
-const altchaStylesUrl = new URL('altcha/altcha.css?raw', import.meta.url).href;
-await altchaStyles.replace(await (await fetch(altchaStylesUrl)).text());
+import altchaCss from 'altcha/altcha.css?inline'
+
+const altchaStyles = unsafeCSS(altchaCss)
 
 /**
  * An example element.
